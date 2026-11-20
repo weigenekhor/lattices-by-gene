@@ -2,19 +2,19 @@
 
 ## Deployment progress - 20 November 2026
 
-The verified website snapshot is published in `weigenekhor/lattices-by-gene`, with GitHub Pages built from `main` at `/` and `latticesbygene.com` assigned. CDN checks confirm the homepage, GNX page, original layered icon, and mobile hero match the published Git blobs. The prior Yvenne website remains online.
+GitHub Pages serves the Lattices homepage and GNX Dashboard from `weigenekhor/lattices-by-gene` on `main`. Spaceship DNS points the apex and www to GitHub Pages. HTTPS is enforced and www forwards to the apex. The homepage, GNX, mobile hero, all 20 app layouts and all three preview appearances were verified on the live domain.
 
-Spaceship DNS has not been applied: the domain still resolves to registrar parking. Browser access disconnected before the record form was completed. HTTPS issuance/enforcement, browser interaction checks, and matching-path redirects remain pending. Do not activate the old-domain redirects until the new domain has been verified.
+The former Artifacts and Yvenne domains forward browsers to matching paths on Lattices, preserving query strings and bookmarks. Both former sites use dedicated redirect branches.
 
 The extended desktop review passed another 58 report, export, scheduling, and scientific checks. A stale comparison-chart test was corrected to cover the existing compact and limit-legend layouts without changing the renderer. The old real-file stress tests now locate the original fixtures in `Lattices Test Files`. Individual large-file workflows passed (42, 124, and 212 charts). The isolated native Windows theme-cycle checks passed for both the untouched and renamed sources, with identical measured control heights. Intermittent native graphics access violations in offscreen and combined stress runs remain unexplained; this broader stability gate is not claimed complete. Production calculations and chart appearance were not changed during this follow-up.
 
 ## Lattices identity migration - 20 November 2026
 
-The suite identity is LATTICES and the staged canonical domain is `https://latticesbygene.com/`, including `/gnx/`. Desktop source now lives at `C:/Users/Gene/Desktop/Lattices/Lattices.py`; the website source folder is `lattices-by-gene`. The existing layered symbol, edition/theme system, layouts, and processing logic are retained.
+The suite identity is LATTICES and the canonical domain is `https://latticesbygene.com/`, including `/gnx/`. Desktop source now lives at `C:/Users/Gene/Desktop/Lattices/Lattices.py`; the website source folder is `lattices-by-gene`. The existing layered symbol, edition/theme system, layouts, and processing logic are retained.
 
 The rebrand covers generated report/email/export branding, bundled Office templates and version resources, both mobile hero resolutions, social artwork, native panels, and name-bearing gallery captures. The capture pipeline verified unchanged RGB pixels outside recorded branding regions and refreshed the corresponding desktop display previews. Application Info now agrees with the current registry's 20 applications. Historical settings, report ledgers, environment overrides, saved sessions/recipes, measurement provenance, email assets, and existing worker registrations remain readable through explicit compatibility handling.
 
-Local validation: 72 website tests pass, 42 JavaScript modules pass syntax checks, and 201 distinct targeted desktop checks pass. Five desktop checks were skipped; two older fixture-dependent checks reference a workbook absent before the migration. New HTML, EML, XLSX, PPTX, PDF, and SVG samples were generated and inspected. No executable or installer was built. Live publication, DNS, TLS, redirects, browser-render checks, and operational integrations are not yet verified for the new domain.
+Local validation: 72 website tests pass, 42 JavaScript modules pass syntax checks, and 201 distinct targeted desktop checks pass. Five desktop checks were skipped; two older fixture-dependent checks reference a workbook absent before the migration. New HTML, EML, XLSX, PPTX, PDF, and SVG samples were generated and inspected. No executable or installer was built. The production cutover checks are recorded above. Live SQL, network drives, and Outlook delivery remain outside the desktop verification.
 
 ## Current preview refresh — 17 November 2026
 

@@ -20,7 +20,7 @@ const panels=JSON.parse(document.querySelector('#native-panel-data').textContent
 const workspaces=desktopWorkspace(shell,model);
 appearanceMenu(shell,setTheme);
 notificationCentre(shell);
-maintainApplicationAge(drawer.querySelector('[data-info-age]'),value=>{drawer.querySelector('[data-info-age]').innerHTML=nativeText(value,{width:110,height:17,size:11.5});});
+maintainApplicationAge(drawer.querySelector('[data-info-age]'),value=>{drawer.querySelector('[data-info-age]').innerHTML=nativeText(value,{width:99,height:17,size:11.5});});
 drawer.querySelector('[data-close-info]').addEventListener('click',()=>{info=false;updatePanels();shell.querySelector('[data-settings]').focus({preventScroll:true});});
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const coarse=matchMedia('(hover: none), (pointer: coarse), (max-width:1100px)');
@@ -97,11 +97,40 @@ function warmActiveAssets(){
  });
 }
 function updatePanels(){closeDetails();clearTimeout(layoutTimer);shell.classList.toggle('panels-moving',!reduced.matches);bounds=null;controller.product.style.setProperty('--nav-shift',`${expanded?180:0}px`);controller.product.style.setProperty('--panel-shift',`${(expanded?180:0)+(info?218:0)}px`);controller.product.style.setProperty('--info-width',`${info?218:0}px`);controller.product.classList.toggle('nav-expanded',expanded);controller.product.classList.toggle('info-expanded',info);const expand=controller.product.querySelector('[data-expand-nav]');expand.setAttribute('aria-expanded',String(expanded));expand.setAttribute('aria-label',expanded?'Collapse application navigation':'Expand application navigation');controller.product.querySelector('[data-settings]').setAttribute('aria-expanded',String(info));drawer.inert=!info;drawer.setAttribute('aria-hidden',String(!info));if(reduced.matches)renderHome();else layoutTimer=setTimeout(()=>{shell.classList.remove('panels-moving');renderHome();},240);}
+// Navigation tint pairs come from the desktop ApplicationInfoPanel, keyed by its tab IDs.
+const infoTints={
+ home_tab: ['#B5C7BE','#B6A2BD'],
+ parser_tab: ['#C9BCA6','#C7B19C'],
+ altusanko_tab: ['#AABDC4','#A9B5C6'],
+ wafercount_tab: ['#C2BDAF','#C6A3B1'],
+ topotracer_tab: ['#A3C1B0','#B0B3A2'],
+ xml_tab: ['#BFB4C0','#C3ABB7'],
+ path_tab: ['#C2C9B0','#B5B1CB'],
+ metro_tab: ['#B7C5C9','#D0BDAA'],
+ pyra_tab: ['#B1C9BA','#AD9DBA'],
+ dt_tab: ['#CDC0B1','#B6B5A3'],
+ laytec_tab: ['#AFBDC1','#CDB6C5'],
+ xmlll_tab: ['#C2C9B8','#A6B6B0'],
+ dnd_tab: ['#B4C0AB','#C8AEAC'],
+ dnd2_tab: ['#C8BDBD','#B5A5C9'],
+ plessey_spc_tab: ['#B8C7AE','#BCC2A9'],
+ aperture_spc_tab: ['#AEC9C3','#D2B4BD'],
+ datalens_tab: ['#CEBEA6','#AFA9BC'],
+ sentry_tab: ['#B6C3BB','#C6B9A1'],
+ ankohelper_tab: ['#BECEBF','#A6B6BF'],
+ sap_tab: ['#C6B9B2','#D1ADB4'],
+ manufacts_tab: ['#9DC8C5','#ADC5BE']
+};
+function updateInfoTint(){
+ const key=appFor(workspaces.active)?.sourceKey || 'home_tab';
+ const tints=infoTints[key] || infoTints.home_tab;
+ drawer.style.setProperty('--info-shade',state.theme==='tenebrismo'?'#BCC9CD':tints[state.theme==='pentimento'?1:0]);
+}
 function applyEdition(){
  if(controller.mode!==state.mode)workspaces.close();
  closeDetails();movies.clear();lastWarmed='';controller.theme=state.theme;controller.mode=state.mode;
  const modeName=state.mode==='legacy'?'Legacy':'Pentimento',themeName=themes[state.theme];
- shell.dataset.theme=state.theme;shell.dataset.mode=state.mode;
+ shell.dataset.theme=state.theme;shell.dataset.mode=state.mode;updateInfoTint();
  shell.setAttribute('aria-label',`${modeName}, ${themeName} theme, LATTICES application`);
  stateBox.dataset.edition=state.mode;
  stateBox.querySelector('[data-mode-label]').innerHTML=nativeText(modeName,{width:state.mode==='legacy'?50:84,height:24,size:11,weight:500,letterSpacing:.66,family:'Geist'});
@@ -122,7 +151,7 @@ shell.addEventListener('pointerover',e=>{const locateButton=e.target.closest('[d
 shell.addEventListener('pointerout',e=>{if(e.target.closest('[data-locate-app]')){clearLocate();return;}if(e.target.closest('[data-inspect-app]')&&!e.relatedTarget?.closest('[data-inspect-app],.module-details'))scheduleClose();});
 shell.addEventListener('focusin',e=>{if(e.target.matches('[data-locate-app]'))locate(e.target.dataset.locateApp);if(e.target.matches('[data-inspect-app]'))showDetails(e.target);});
 shell.addEventListener('focusout',e=>{if(e.target.matches('[data-locate-app]'))clearLocate();if(!e.relatedTarget?.closest('[data-inspect-app],.module-details'))scheduleClose();});
-shell.addEventListener('click',e=>{const button=e.target.closest('button');if(!button)return;if(button.hasAttribute('data-expand-nav')){expanded=!expanded;updatePanels();}if(button.hasAttribute('data-settings')){info=!info;updatePanels();}if(button.hasAttribute('data-home')){workspaces.close();renderHome();closeDetails();home.querySelector('.home-scroll')?.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'});}if(button.hasAttribute('data-cycle-mode'))setEdition(controller.mode==='legacy'?'pentimento':'legacy');const appId=button.dataset.inspectApp||button.dataset.locateApp;if(appId){closeDetails();workspaces.open(appId);}});
+shell.addEventListener('click',e=>{const button=e.target.closest('button');if(!button)return;if(button.hasAttribute('data-expand-nav')){expanded=!expanded;updatePanels();}if(button.hasAttribute('data-settings')){info=!info;updatePanels();}if(button.hasAttribute('data-home')){workspaces.close();renderHome();updateInfoTint();closeDetails();home.querySelector('.home-scroll')?.scrollTo({top:0,behavior:reduced.matches?'instant':'smooth'});}if(button.hasAttribute('data-cycle-mode'))setEdition(controller.mode==='legacy'?'pentimento':'legacy');const appId=button.dataset.inspectApp||button.dataset.locateApp;if(appId){closeDetails();workspaces.open(appId);updateInfoTint();}});
 shell.querySelectorAll('button:not(.desktop-only)').forEach(button=>button.disabled=false);
 controller.warm=warmActiveAssets;
 const preloadObserver=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){controller.warm();preloadObserver.disconnect();}},{rootMargin:'350px'});preloadObserver.observe(stage);
