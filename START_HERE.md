@@ -1,5 +1,13 @@
 # Start here — LATTICES public website
 
+## Deployment progress - 20 November 2026
+
+The verified website snapshot is published in `weigenekhor/lattices-by-gene`, with GitHub Pages built from `main` at `/` and `latticesbygene.com` assigned. CDN checks confirm the homepage, GNX page, original layered icon, and mobile hero match the published Git blobs. The prior Yvenne website remains online.
+
+Spaceship DNS has not been applied: the domain still resolves to registrar parking. Browser access disconnected before the record form was completed. HTTPS issuance/enforcement, browser interaction checks, and matching-path redirects remain pending. Do not activate the old-domain redirects until the new domain has been verified.
+
+The extended desktop review passed another 58 report, export, scheduling, and scientific checks. A stale comparison-chart test was corrected to cover the existing compact and limit-legend layouts without changing the renderer. The old real-file stress tests now locate the original fixtures in `Lattices Test Files`; a native access violation observed during their offscreen run is still being compared with the untouched source and native Windows run. This stress check is not yet a passed release gate.
+
 ## Lattices identity migration - 20 November 2026
 
 The suite identity is LATTICES and the staged canonical domain is `https://latticesbygene.com/`, including `/gnx/`. Desktop source now lives at `C:/Users/Gene/Desktop/Lattices/Lattices.py`; the website source folder is `lattices-by-gene`. The existing layered symbol, edition/theme system, layouts, and processing logic are retained.
