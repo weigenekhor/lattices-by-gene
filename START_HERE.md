@@ -6,7 +6,7 @@ The verified website snapshot is published in `weigenekhor/lattices-by-gene`, wi
 
 Spaceship DNS has not been applied: the domain still resolves to registrar parking. Browser access disconnected before the record form was completed. HTTPS issuance/enforcement, browser interaction checks, and matching-path redirects remain pending. Do not activate the old-domain redirects until the new domain has been verified.
 
-The extended desktop review passed another 58 report, export, scheduling, and scientific checks. A stale comparison-chart test was corrected to cover the existing compact and limit-legend layouts without changing the renderer. The old real-file stress tests now locate the original fixtures in `Lattices Test Files`; a native access violation observed during their offscreen run is still being compared with the untouched source and native Windows run. This stress check is not yet a passed release gate.
+The extended desktop review passed another 58 report, export, scheduling, and scientific checks. A stale comparison-chart test was corrected to cover the existing compact and limit-legend layouts without changing the renderer. The old real-file stress tests now locate the original fixtures in `Lattices Test Files`. Individual large-file workflows passed (42, 124, and 212 charts). The isolated native Windows theme-cycle checks passed for both the untouched and renamed sources, with identical measured control heights. Intermittent native graphics access violations in offscreen and combined stress runs remain unexplained; this broader stability gate is not claimed complete. Production calculations and chart appearance were not changed during this follow-up.
 
 ## Lattices identity migration - 20 November 2026
 
