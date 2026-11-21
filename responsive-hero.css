@@ -26,6 +26,9 @@
  .author-identity{flex-wrap:wrap}
 }
 @media(max-width:760px){
+ /* Give the phone still one continuous, centered backdrop with a soft falloff. */
+ .product-environment{width:100vw;max-width:none;height:calc(100% + 64px);background:radial-gradient(ellipse 65% 50% at 50% 68%,rgba(82,86,90,.3) 0%,rgba(48,52,55,.14) 48%,transparent 80%);-webkit-mask-image:none;mask-image:none}
+ .product-environment i,.product-environment:after{display:none}
  .hero-intro{padding-block:36px 24px}
  .hero-intro .eyebrow{font-size:10px;line-height:1.8;max-width:34em}
  .hero-sequence{padding-bottom:36px}
