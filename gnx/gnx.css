@@ -369,6 +369,10 @@
 .gnx-page .ending .site-link { font-size: 12px; color: #dadedd; }
 
 @media(max-width: 1100px) {
+  /* Match the LATTICES hero: a complete desktop still on smaller screens. */
+  .gnx-hero .product-window { display: none; }
+  .gnx-mobile-product { padding-top: 0; }
+  .gnx-mobile-product img { aspect-ratio: 1252 / 791; }
   .engine-showcase { padding-bottom: 54px; }
   .architecture .principle-figure { grid-template-rows: auto auto auto; }
   .architecture .principle-drawing svg { position: static; }
